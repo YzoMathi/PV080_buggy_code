@@ -9,7 +9,7 @@ void print_iv(uint8_t *iv) {
     for (int i = 0; i < 16; ++i) {
         printf("%02x ", iv[i]);
     }
-    printf('\n');
+    printf("\n");
 }
 
 void print_plaintext(uint8_t *plaintext) {
@@ -17,12 +17,12 @@ void print_plaintext(uint8_t *plaintext) {
     for (int i = 0; i < 32; ++i) {
         printf("%c", plaintext[i]);
     }
-    printf('\n');
+    printf("\n");
 }
 
-void recv_message(uint8_t *message) {
+void recv_message(uint8_t *message, int size) {
     sodium_init();
-    memcpy(message + 16, "\"Beware the Jabberwock, my son!\"", sizeof(message) - 16);
+    memcpy(message + 16, "\"Beware the Jabberwock, my son!\"", size - 16);
 }
 
 void decrypt_message(uint8_t *iv, uint8_t *ct, uint8_t *pt) {

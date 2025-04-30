@@ -14,10 +14,10 @@ int main(void) {
     uint8_t plaintext[32];
   
     // iv || ciphertext
-    recv_message(message);
+    recv_message(message, sizeof(message));
     
     memcpy(iv, message, sizeof(iv));
-    memcpy(ciphertext, message + 16, sizeof(ciphertext));
+    memcpy(ciphertext, message + 16, ((sizeof(message) - 16) > sizeof(ciphertext) ? sizeof(ciphertext) : sizeof(message)));
 
     decrypt_message(iv, ciphertext, plaintext);
 
